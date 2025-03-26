@@ -1,6 +1,6 @@
 ﻿namespace kniga
 {
-        public class Author
+    public class Author
 
     {
         public string LastName { get; set; }

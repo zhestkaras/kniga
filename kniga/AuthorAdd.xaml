@@ -1,0 +1,22 @@
+﻿<Window x:Class="kniga.AuthorAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kniga"
+        mc:Ignorable="d"
+        Title="AuthorAdd" Height="450" Width="800">
+    <Grid>
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <StackPanel DataContext="{Binding NewAuthor}">
+                <TextBlock Text="Adding a new entry"/>
+                
+                <TextBlock Text=" first name "/>
+                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text=" last name"/>
+                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <Button Content="Save changes" Command="{Binding InsertAuthor}"/>
+        </StackPanel>
+    </Grid>
+</Window>

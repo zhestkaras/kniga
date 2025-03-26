@@ -2,7 +2,7 @@
 using System.Windows;
 using kniga;
 
-    internal class AuthorDB
+internal class AuthorDB
 {
         DbConnection connection;
 
@@ -74,21 +74,21 @@ using kniga;
                     string last_name = string.Empty;
                     DateTime birthday = DateTime.MinValue;
 
-
-
                     if (!dr.IsDBNull(1))
-                        first_name = dr.GetString("first_name");
-                        string Patrionymic = dr.GetString("patrionymic");
+                      first_name = dr.GetString("first_name");
+                      string Patrionymic = dr.GetString("patrionymic");
+                      last_name = dr.GetString("last_name");
+                      birthday = dr.GetString("birthday");
 
-
-                    string last_name = dr.GetString("Lname");
-                    string birthday = dr.GetString("Lname");
                     author.Add(new Author
                        {
                             ID = id,
-                            FirstName = fname,
-                            LastName = lname
-                        });
+                            FirstName = first_name,
+                            Patrionymic= Patrionymic,
+                            LastName = last_name,
+                            Birthday = birthday
+
+                    });
                     }
                 }
                 catch (Exception ex)
@@ -108,10 +108,10 @@ using kniga;
 
             if (connection.OpenConnection())
             {
-                var mc = connection.CreateCommand($"update `author` set `Fname`=@fname, `Lname`=@lname where `id` = {edit.ID}");
-                mc.Parameters.Add(new MySqlParameter("fname", edit.FirstName));
-            mc.Parameters.Add(new MySqlParameter("fname", edit.FirstName)); 
-            mc.Parameters.Add(new MySqlParameter("lname", edit.LastName));
+                var mc = connection.CreateCommand($"update `author` set ` FirstName`=@first_name, `Patrionymic`=@patrionymic, `LastName`=@last_name, `birthday`=@birthday  where `id` = {edit.ID}");
+                mc.Parameters.Add(new MySqlParameter("first_name", edit.FirstName));
+                mc.Parameters.Add(new MySqlParameter("patrionymic", edit.FirstName)); 
+                mc.Parameters.Add(new MySqlParameter("last_name", edit.LastName));
 
                 try
                 {
@@ -159,4 +159,3 @@ using kniga;
             return db;
         }
     }
-}
